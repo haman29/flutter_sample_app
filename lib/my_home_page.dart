@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -18,6 +19,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter++;
       _counter = _counter * 2;
     });
+  }
+
+  void getRepo() async {
+    var url = Uri.https('api.github.com', 'users/haman29/repos');
+    var response = await http.get(url);
+    print(response.statusCode);
   }
 
   @override
@@ -94,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: getRepo,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
