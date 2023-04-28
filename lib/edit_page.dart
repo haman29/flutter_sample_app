@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
 
 class EditPage extends StatelessWidget {
-  const ChatPage({super.key});
-  
+  EditPage({Key? key}) : super(key: key);
+
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('chatgpt sample'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(onChanged: (value) {
-              setState(() {
-                _message = value;
-              });
-            }),
-            Text(_message),
-          ],
+      appBar: AppBar(title: const Text('テキスト入力画面'), actions: [
+        IconButton(
+          icon: const Icon(Icons.send),
+          onPressed: () {
+            Navigator.pop(context, _controller.text);
+          },
+        )
+      ]),
+      body: TextField(
+        controller: _controller,
+        decoration: const InputDecoration(
+          border: InputBorder.none,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/edit");
-        },
-        tooltip: 'Edit',
-        child: const Icon(Icons.edit),
+        maxLength: null,
       ),
     );
   }

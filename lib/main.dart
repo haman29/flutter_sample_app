@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'first_page.dart';
-import 'second_page.dart';
-// import 'chat_page.dart';
-// import 'edit_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+import 'chat_page.dart';
+import 'edit_page.dart';
+
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (BuildContext context) => const FirstPage(),
-        '/second': (BuildContext context) => const SecondPage(),
+        '/': (BuildContext context) => const ChatPage(),
+        '/edit': (BuildContext context) => EditPage(),
       },
     );
   }
