@@ -11,10 +11,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _message = '初期値';
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      // _counter++;
+      _counter = _counter * 2;
     });
   }
 
@@ -81,16 +83,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 50,
                 child: ColoredBox(color: Colors.yellow),
               ),
-            ])
+            ]),
+            TextField(onChanged: (value) {
+              setState(() {
+                _message = value;
+              });
+            }),
+            Text(_message),
           ],
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
