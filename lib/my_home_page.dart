@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -24,7 +25,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void getRepo() async {
     var url = Uri.https('api.github.com', 'users/haman29/repos');
     var response = await http.get(url);
-    print(response.statusCode);
+    // print(response.statusCode);
+
+    final List body = json.decode(response.body);
+    print(body[0]['name']);
   }
 
   @override
