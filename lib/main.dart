@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'my_home_page.dart';
-// import 'my_list_view.dart';
-// import 'first_page.dart';
+import 'first_page.dart';
+import 'second_page.dart';
+// import 'chat_page.dart';
+// import 'edit_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,13 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ChatGPT Sample',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: const FirstPage(),
-      // home: const MyListView(title: 'Flutter Demo Home Page aaa'),
-      home: const MyHomePage(title: 'Flutter Demo Home Page aaa'),
+      initialRoute: '/',
+      routes: {
+        '/': (BuildContext context) => const FirstPage(),
+        '/second': (BuildContext context) => const SecondPage(),
+      },
     );
   }
 }
